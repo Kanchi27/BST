@@ -1,4 +1,4 @@
-// time complexity of BST which is linear i.e one sided , like a linked //list wont have O(n) time complexity instead it will be O(n)
+// time complexity of BST which is linear i.e one sided , like a linked //list wont have O(logn) time complexity instead it will be O(n)
 // 5 --> 10 ---> 20 ---> 57 -->. --> 90
 
 class Node {
