@@ -99,8 +99,13 @@ class BST {
       if(node.right) traverse(node.right);
     }
     traverse(this.root);
-    return data;
+    return data;  // [ 55, 10,  5,  1,  15, 20, 75, 60, 93, 120]
   }
+  
+  //                           55
+//          10                             75
+//       5        15                 60          93
+  // 1                  20                             120
 
 // looping over from root upto the leftmost child, iterate over all children back to parent nodes on left ,then right
   dfsPosteOrder(){
@@ -111,7 +116,7 @@ class BST {
       data.push(node.value);
     }
     traverse(this.root);
-    return data;
+    return data;   // [1, 5, 20, 15, 10,60, 120, 93, 75, 55]
   }
 
 
@@ -124,7 +129,7 @@ class BST {
       if(node.right) traverse(node.right);
     }
     traverse(this.root);
-    return data;
+    return data; // [ 1, 5, 10, 15,  20, 55, 60, 75, 93, 120]
   }
 }
 
