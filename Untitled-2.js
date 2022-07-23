@@ -9,7 +9,8 @@ class BinarySearchTree {
     constructor(rootValue) {
         this.root = new Node(rootValue)
     }
-insert(currentNode, newValue) {
+    
+    insert(currentNode, newValue) {
         if (currentNode === null) {
             currentNode = new Node(newValue)
         } else if (newValue < currentNode.val) {
@@ -19,38 +20,43 @@ insert(currentNode, newValue) {
         }
         return currentNode
     }
-insertBST(newValue) {
+    
+    insertBST(newValue) {
         if(this.root==null){
             this.root=new Node(newValue)
             return
         }
         this.insert(this.root, newValue)
     }
-preOrderPrint(currentNode) {
+    
+    preOrderPrint(currentNode) {
         if (currentNode !== null) {
             console.log(currentNode.val)
             this.preOrderPrint(currentNode.leftChild)
             this.preOrderPrint(currentNode.rightChild)
         }
-}
-inOrderPrint(currentNode) {
+    }
+    
+    inOrderPrint(currentNode) {
         if (currentNode !== null) {
             this.inOrderPrint(currentNode.leftChild)
             console.log(currentNode.val)
             this.inOrderPrint(currentNode.rightChild)
         }
-}
+    }
+    
     postOrderPrint(currentNode) {
         if (currentNode !== null) {
             this.postOrderPrint(currentNode.leftChild)
             this.postOrderPrint(currentNode.rightChild)
             console.log(currentNode.val)
         }
-}
+    }
+    
     search(currentNode, value) {
-if (currentNode !== null) {
+        if (currentNode !== null) {
             if (value == currentNode.val) {
-return currentNode
+                return currentNode
             } else if (value < currentNode.val) {
                 return this.search(currentNode.leftChild, value)
             } else {
@@ -59,15 +65,17 @@ return currentNode
         } else {
             return null
         }
-}
-searchBST(value) {
-        return this.search(this.root, value)
     }
+    
+    searchBST(value) {
+        return this.search(this.root, value)
+         }
+         
     delete(currentNode, value) {
         if (currentNode == null) {
             return false
         }
-let parentNode
+        let parentNode
         while (currentNode && (currentNode.val != value)) {
             parentNode = currentNode
             if (value < currentNode.val) {
@@ -76,7 +84,7 @@ let parentNode
                 currentNode = currentNode.rightChild
             }
         }
-if (currentNode === null) {
+        if (currentNode === null) {
             return false
         } else if (currentNode.leftChild == null && currentNode.rightChild == null) {
             if(currentNode.val==this.root.val){
@@ -102,7 +110,7 @@ if (currentNode === null) {
                 parentNode.rightChild = currentNode.leftChild
                 return true
             }
-} else if (currentNode.leftChild == null) {
+        } else if (currentNode.leftChild == null) {
             if(currentNode.val==this.root.val){
                 this.root = currentNode.rightChild
                 return true
@@ -126,14 +134,40 @@ if (currentNode === null) {
         }
     }
 }
-findMin(rootNode) => {
-  if(rootNode == null)
-    return null
-  else if(rootNode.leftChild == null)
-      return rootNode.val
-  else
-    return findMin(rootNode.leftChild)
+
+// findMin(rootNode) => {
+//   if(rootNode == null)
+//     return null
+//   else if(rootNode.leftChild == null)
+//       return rootNode.val
+//   else
+//     return findMin(rootNode.leftChild)
+// }
+
+findMin(node) => {
+    if(node){   
+      //Return the left most descendant's value
+      while(node && node.left !== null){
+        node = node.left;
+      }
+      
+      return node.val
+    }
+    
+    return null;
 }
+
+    findMax(node){
+        if(node){
+            // return the rightmost descendant's value
+            while(node && node.right!==null){
+            node = node.right;
+            }
+            return node.val
+        }
+        return null
+    }
+
 let BST = new BinarySearchTree(6)
 BST.insertBST(20)
 BST.insertBST(-1)
