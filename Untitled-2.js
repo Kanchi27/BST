@@ -72,10 +72,12 @@ class BinarySearchTree {
          }
          
     delete(currentNode, value) {
+        // empty BST, currentNode initialized to root node
         if (currentNode == null) {
             return false
         }
         let parentNode
+        // search node to be deleted, iterate until node is found
         while (currentNode && (currentNode.val != value)) {
             parentNode = currentNode
             if (value < currentNode.val) {
@@ -84,21 +86,31 @@ class BinarySearchTree {
                 currentNode = currentNode.rightChild
             }
         }
+        // if current node points to end, node not found, exit
         if (currentNode === null) {
             return false
-        } else if (currentNode.leftChild == null && currentNode.rightChild == null) {
+        } 
+        // else consider possible cases to delete given node (currentNode):
+        // case 1 : leaf node, no child
+        else if (currentNode.leftChild == null && currentNode.rightChild == null) {
+            // current node same as root node, make root to null,=> empty BST
             if(currentNode.val==this.root.val){
                 this.root=null
                 return true
             }
+            // else if the leaf, belongs to left subtree, root.left = null
             else if (currentNode.val < parentNode.val) {
                 parentNode.leftChild = null
                 return true
-            } else {
+            } 
+            // else if the leaf, belongs to right subtree, root.right = null
+            else {
                 parentNode.rightChild = null
                 return true
             }
-        } else if (currentNode.rightChild == null) {
+        } 
+        // case 2 : one child 
+        else if (currentNode.rightChild == null) {
             if(currentNode.val==this.root.val){
                 this.root=currentNode.leftChild
                 return true
@@ -133,7 +145,7 @@ class BinarySearchTree {
             return true
         }
     }
-}
+
 
 // findMin(rootNode) => {
 //   if(rootNode == null)
@@ -167,6 +179,7 @@ findMin(node) => {
         }
         return null
     }
+}
 
 let BST = new BinarySearchTree(6)
 BST.insertBST(20)
